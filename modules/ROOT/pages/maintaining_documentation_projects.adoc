@@ -26,7 +26,7 @@ gitGraph
   checkout v1
   commit
 ////
-image::ex_creating_version_branch.png[]
+image::ex_creating_version_branch.png[width=33%]
 ====
 
 === Creating a draft branch
@@ -52,7 +52,7 @@ gitGraph
   commit
   commit
 ////
-image::ex_creating_draft_branch.png[]
+image::ex_creating_draft_branch.png[width=33%]
 ====
 
 === Writing content
