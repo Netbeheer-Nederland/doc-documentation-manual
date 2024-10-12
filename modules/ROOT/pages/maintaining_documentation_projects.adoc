@@ -9,6 +9,7 @@ image::proc_create_doc_proj.drawio.svg[]
 == Adding, modifying and removing content
 
 // TODO: Heading levels don't match this process diagram. I think the diagram needs cutting.
+// TODO: Better even: create overall process diagram at the top which consists (almost?) solely of predefined processes which correspond to all top-level headings here which have their own process diagrams.
 ****
 image::proc_maintaining_doc_proj.drawio.svg[]
 ****
