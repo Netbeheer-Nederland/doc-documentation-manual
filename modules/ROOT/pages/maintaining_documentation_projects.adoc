@@ -24,15 +24,15 @@ image::proc_create_new_draft_branch.drawio.svg[]
 
 === Committing and syncing revisions
 
-=== Reviewing and discussion
+== Reviewing and discussion
 
 ****
 image::proc_receiving_feedback_and_reviewing.drawio.svg[]
 ****
 
-==== Create draft pull requests for feedback
+=== Create draft pull requests for feedback
 
-==== Create pull requests for reviewing before release
+=== Create pull requests for reviewing before release
 
 === Finishing drafts by merging
 
