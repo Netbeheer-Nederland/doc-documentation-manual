@@ -3,13 +3,13 @@
 == Creating a documentation project
 
 ****
-image::proc_create_doc_proj.drawio.svg[opts=interactive]
+image::proc_create_doc_proj.drawio.svg[]
 ****
 
 == Adding, modifying and removing content
 
 ****
-image::proc_maintaining_doc_proj.drawio.svg[opts=interactive]
+image::proc_maintaining_doc_proj.drawio.svg[]
 ****
 
 === Creating a version branch
@@ -17,21 +17,31 @@ image::proc_maintaining_doc_proj.drawio.svg[opts=interactive]
 === Creating a draft branch
 
 ****
-image::proc_create_new_draft_branch.drawio.svg[opts=interactive]
+image::proc_create_new_draft_branch.drawio.svg[]
 ****
 
 === Writing content
 
+=== Committing and syncing revisions
+
 === Reviewing and discussion
 
 ****
-image::proc_receiving_feedback_and_reviewing.drawio.svg[opts=interactive]
+image::proc_receiving_feedback_and_reviewing.drawio.svg[]
 ****
 
-=== Finishing drafts
+==== Create draft pull requests for feedback
+
+==== Create pull requests for reviewing before release
+
+=== Finishing drafts by merging
 
 == Releasing a version
 
 ****
-image::proc_release_new_version.drawio.svg[opts=interactive]
+image::proc_release_new_version.drawio.svg[]
 ****
+
+=== Tagging a commit with a version number
+
+=== Rebuild documentation website

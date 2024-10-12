@@ -1,0 +1,57 @@
+= Documentation Projects
+
+* What is a documentation project?
+* Versioning
+** Version identifiers
+*** Version numbering scheme
+*** Latest version
+** Major versions
+** Minor versions
+** Drafts
+*** Feedback and discussion
+* Releasing
+** Review and discussion
+** Releasing a new version
+
+
+'''
+== What is a documentation project?
+
+Documents and resources that constitute a whole that is to be maintained and versioned as such is called a _documentation project_.
+
+
+
+
+Different documentation projects can have different owners, authors, versions
+
+A _documentation project_ is a unit of documentation to be maintained on its own. This could be any type of documention: standards, guides, conventions, books, etc.
+
+== Create a draft branch for your work
+
+Every addition, modification or deletion of content must be done in a _draft branch_. These are Git branches dedicated to capturing the intent of a load of work, allowing writers to safely make those changes without affecting other the work of other writers or documentation that is released.
+
+=== Draft branches branch off of release branches
+
+The work you do in the draft branch is intended to eventually be part to a release. Before creating a draft branch, make sure to
+
+For each major version there is a _release branch_. Draft branches must branch off of one of those branches, and merge back to them. The idea
+
+== Tracking and syncing your work
+
+=== Add, modify or delete content at will
+
+=== Commit your changes
+
+=== Push changes to remote
+
+== Feedback and reviewing
+
+****
+image::proc_receiving_feedback_and_reviewing.drawio.svg[]
+****
+
+
+== Releasing a new version
+****
+image::proc_release_new_version.drawio.svg[]
+****

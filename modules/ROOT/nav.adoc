@@ -1,1 +1,4 @@
-* Home
+* Documentation Architecture
+** Documentation Website
+** Documentation Projects
+* xref::maintaining_documentation_projects.adoc[]
