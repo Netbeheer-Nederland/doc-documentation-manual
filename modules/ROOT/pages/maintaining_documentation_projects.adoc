@@ -14,11 +14,46 @@ image::proc_maintaining_doc_proj.drawio.svg[]
 
 === Creating a version branch
 
+.New version branch `v1`
+====
+// Mermaid Gitgraph
+////
+%%{init: { 'gitGraph': {'mainBranchName': 'v0', 'showBranches': true, 'parallelCommits': false}} }%%
+gitGraph
+  commit
+  commit
+  branch v1
+  checkout v1
+  commit
+////
+image::ex_creating_version_branch.png[]
+====
+
 === Creating a draft branch
 
 ****
 image::proc_create_new_draft_branch.drawio.svg[]
 ****
+
+
+.New draft branch `v1.new-logo`
+====
+// Mermaid Gitgraph
+////
+%%{init: { 'gitGraph': {'mainBranchName': 'v0', 'showBranches': true, 'parallelCommits': false}} }%%
+gitGraph
+  commit
+  commit
+  branch v1
+  checkout v1
+  commit
+  commit
+  branch v1.new-logo
+  commit
+  commit
+////
+image::ex_creating_draft_branch.png[]
+====
 
 === Writing content
 
