@@ -88,4 +88,23 @@ image::proc_release_new_version.drawio.svg[]
 
 === Tagging a commit with a version number
 
+.Tagging a version
+====
+// Mermaid Gitgraph
+////
+%%{init: { 'gitGraph': {'mainBranchName': 'v1'}} }%%
+gitGraph
+  commit
+  commit tag: "v1.0"
+  commit
+  branch v1.new-logo
+  commit
+  commit
+  checkout v1
+  merge v1.new-logo tag: "v1.1"
+////
+image::ex_tagging_version.png[width=50%]
+====
+
+
 === Rebuild documentation website
