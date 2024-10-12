@@ -57,8 +57,6 @@ image::ex_creating_draft_branch.png[width=50%]
 
 == Working on a draft
 
-// TODO: Heading levels don't match this process diagram. I think the diagram needs cutting.
-// TODO: Better even: create overall process diagram at the top which consists (almost?) solely of predefined processes which correspond to all top-level headings here which have their own process diagrams.
 ****
 image::proc_working_on_draft.drawio.svg[]
 ****
