@@ -1,7 +1,6 @@
-name: project-name
-title: Project Name
+name: documentation-manual
+title: Documentation Manual
 version: true
-prerelease: "-draft"
 start_page: index.adoc
 nav:
 - modules/ROOT/nav.adoc
