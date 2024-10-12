@@ -47,7 +47,7 @@ For each major version there is a _release branch_. Draft branches must branch o
 == Feedback and reviewing
 
 ****
-image::proc_receiving_feedback_and_reviewing.drawio.svg[]
+image::proc_reviewing_and_discussion.drawio.svg[]
 ****
 
 

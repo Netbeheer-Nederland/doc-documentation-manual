@@ -1,20 +1,23 @@
 = Maintaining Documentation Projects
 
+.Process
+****
+image::proc_maintaining_doc_proj.drawio.svg[]
+****
+
 == Creating a documentation project
 
 ****
 image::proc_create_doc_proj.drawio.svg[]
 ****
 
-== Adding, modifying and removing content
+== Creating a new draft
 
-// TODO: Heading levels don't match this process diagram. I think the diagram needs cutting.
-// TODO: Better even: create overall process diagram at the top which consists (almost?) solely of predefined processes which correspond to all top-level headings here which have their own process diagrams.
 ****
-image::proc_maintaining_doc_proj.drawio.svg[]
+image::proc_create_new_draft_branch.drawio.svg[]
 ****
 
-=== Creating a version branch
+=== Choosing or creating a version branch
 
 .New version branch `v1`
 ====
@@ -32,11 +35,6 @@ image::ex_creating_version_branch.png[width=33%]
 ====
 
 === Creating a draft branch
-
-****
-image::proc_create_new_draft_branch.drawio.svg[]
-****
-
 
 .New draft branch `v1.new-logo`
 ====
@@ -57,6 +55,14 @@ gitGraph
 image::ex_creating_draft_branch.png[width=50%]
 ====
 
+== Working on a draft
+
+// TODO: Heading levels don't match this process diagram. I think the diagram needs cutting.
+// TODO: Better even: create overall process diagram at the top which consists (almost?) solely of predefined processes which correspond to all top-level headings here which have their own process diagrams.
+****
+image::proc_working_on_draft.drawio.svg[]
+****
+
 === Writing content
 
 === Committing and syncing revisions
@@ -64,14 +70,17 @@ image::ex_creating_draft_branch.png[width=50%]
 == Reviewing and discussion
 
 ****
-image::proc_receiving_feedback_and_reviewing.drawio.svg[]
+image::proc_reviewing_and_discussion.drawio.svg[]
 ****
 
 === Create draft pull requests for feedback
 
 === Create pull requests for reviewing before release
 
-=== Finishing drafts by merging
+== Finishing drafts
+
+* Merging draft branches.
+* If you used a draft PR, convert it to a regular one to get the merging done.
 
 == Releasing a version
 
