@@ -98,7 +98,7 @@ content:
 <2> You don't have to exclusively write references. Using plain text headers can sometimes be beneficial for structuring the content.
 <3> Add references for all pages in any structure you see fit. Note you can leave the text between the brackets empty, automatically causing the link text to be the referenced page's title.
 +
-. Commit and push these changes.
+. Commit and push these changes to the `main` branch.
 . Make sure to <<_rebuild_documentation_website,rebuild the documentation website>> once you wish to actually see the new documentation project appear on the website.
 
 == Creating a new draft
@@ -234,3 +234,5 @@ image::ex_tagging_version.png[width=50%]
 
 
 === Rebuild documentation website
+
+image::trigger_git_workflow_publish_gh_pages.png[]
