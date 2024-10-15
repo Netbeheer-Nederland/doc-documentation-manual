@@ -197,7 +197,56 @@ image::proc_working_on_draft.drawio.svg[]
 
 === Writing content
 
-==== Editor and IDE support
+// TODO: Refer to dedicated chapter.
+Here, only a short summary is given to get you started. At some point a more extensive guide on how to write content and leverage helpful tooling will have to be written.
+
+==== Write content in AsciiDoc
+
+Content is written in the AsciiDoc markup language. Its well-standardized and expressive plaintext nature is what we require for our durable, documentation as code workflow. You can read more about our motivation for documentation as code and AsciiDoc xref::docs_as_code.adoc[here].
+
+You can write AsciiDoc in any IDE or text editor. For learning the language refer to the large variety of resources on the web.
+// TODO: Refer to some helpful resources such as AsciiDoctor's primer, the AsciiDoc website and perhaps some other tutorials or guides?
+
+==== Use Antora resource IDs instead of local paths
+
+[IMPORTANT]
+We make use of Antora for coordination and aggregation of documentation projects. When cross-referencing resources, do not use relative paths, but use Antora resource IDs. Read more on why this is encouraged https://antora.zulipchat.com/#narrow/stream/282400-users/topic/Local.20references.20compatible.20with.20both.20Antora.20and.20AsciiDoctor[in this issue].
+
+==== Embedding Diagrams.net (draw.io) images
+
+Diagrams.net drawings are used extensively in our documentation. For greatly enhanced maintainability the following way of working is advised:
+
+.Instructions
+
+. Create and edit your diagrams in the Diagrams.net application, web or desktop.
+. Export the diagram to the SVG or PNG format
+.. This can be found under _File > Export as > ..._
+.. *Important*: save a copy of the diagram inside the image so you can edit it later:
++
+image::ex_save_drawio_include_diagram.png[]
++
+. Save the image to the `modules/ROOT/images` directory of your project.
+. Use the `image` macro to show the image at the desired place in your document(s). For example:
++
+[source,asciidoc]
+....
+image::my_diagram.png[]
+....
++
+. You can edit the diagram by opening the image in the Diagrams.net application.
+
+[TIP]
+--
+You can use hyperlinks in the diagram to jump to associated sections in your document by adding those relative anchors as links in Diagrams.net. For this to work you need to pass the `opts=interactive` attribute value to the `image` macro.
+
+Note that this seems to work only with the desktop application, since the web app exports absolute URLs that are relative to the Diagrams.net web app.
+--
+
+=== Editor and IDE support
+
+As discussed, AsciIDoc is plaintext and can be edited in any editor. However, this could become quite tedious
+
+
 
 === Previewing changes
 
