@@ -197,6 +197,8 @@ image::proc_working_on_draft.drawio.svg[]
 
 === Writing content
 
+==== Editor and IDE support
+
 === Previewing changes
 
 ==== Editor and IDE support
