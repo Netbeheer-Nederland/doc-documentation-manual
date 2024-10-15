@@ -244,17 +244,98 @@ Note that this seems to work only with the desktop application, since the web ap
 
 === Editor and IDE support
 
-As discussed, AsciIDoc is plaintext and can be edited in any editor. However, this could become quite tedious
+As discussed, AsciiDoc is plaintext and can be edited in any editor. However, editing this way can become quite tedious unless you use an editor with more advanced features.
 
+Features to be looking for:
 
+* Syntax highlighting
+* Autocompletion of AsciiDoc macros and constructs
+* Automatic checking for dead references
+* Syntax validation and linting to help with writing correct code
+* Live previewing of rendered documentation
+* Navigating between files with jumps and using a file explorer
+* Git support
+
+This is not an exhaustive list of course, but if an editor supports the majority of these features it will really make your life easier.
+
+Following are some suggestions for IDEs which are popular, easy to use and support good plugins for working with AsciiDoc.
+
+==== IntelliJ IDE
+
+The IntelliJ IDEs are famous for their full-featured integrated development environment where basically everything is taken care of.
+
+Where it stands out:
+
+* Powerful, accessible yet highly customizable UI
+* Best https://plugins.jetbrains.com/plugin/7391-asciidoc[AsciiDoc plugin] currently available
+** Autocompletion works really well
+** Live preview pane, including diagrams as code
+** Antora aware, so it provides a lot of help with cross-references as well
+* Great support for Git built-in
+
+[TIP]
+Get a free version of the application by looking for the _Community Edition_.
+
+==== Visual Studio Code
+
+Another greater editor for writing AsciiDoc is Visual Studio Code.
+
+It comes with a lot less batteries included than IntelliJ's IDEs, but that could be a feature depending on your preferences.
+
+Where it stands out:
+
+* Lean, simple editor but with a great host of extensions available that are easy to install
+* Very decent AsciiDoc plugin available, although not quite as powerful as the IntelliJ one
+** It's Antora awareness is limited at best, not working at worst. This means live previewing is very limited as well at least for our projects.
+* Great support for Git built-in
+
+==== Other editors
+
+There are plugins for Emacs and Vim as well, and likely for many more editors. However, nothing seems to give as much of a fully featured and integrated experience as the IntelliJ IDE does with its AsciiDoc plugin, so that one is highly recommended.
+
+If you do decide to use some other editor, just be aware that previewing will very likely not work with anything that's referenced through Antora resource IDs such as partials and images. Since we do <<_use_antora_resource_ids_instead_of_local_paths,use Antora resource IDs for every reference>>, this means all partial including and image rendering won't work in the preview. Luckily we can preview in other ways as well.
 
 === Previewing changes
 
-==== Editor and IDE support
+Luckily it's not an absolute requirement that our IDE provides a live preview as we type. In fact, this preview is inherently limited in the first place, since it renders in a different way and context than the eventual Antora setup would.
 
 ==== Running Antora locally
+To preview the entire documentation website as it would be rendered in production, but locally including your changes, you can run Antora locally.
 
-=== Committing and syncing revisions
+See: xref::using_antora_locally.adoc[].
+
+=== Committing new changes
+
+Since we rely on Git for versioning, much of the best practices that apply generally when working with Git also apply here.
+
+A few words of advice that cannot be repeated enough:
+
+* Keep commits small.
+* Provide descriptive commit messages that are as short and to the point as possible.
+
+.Small commits and short commit messages
+****
+*_Overview_*. +
+Small commits help with maintaining overview on what you are doing and have done, since small units of work are easier to describe well, and having many of such messages listed chronologically really paints a good picture of your process.
+
+*_Fine-grained rollback_*. +
+This also enables fine-grained rolling back of commits whenever something turned out to be a mistake for example. Imagine having to roll back a gigantic load of work just to revert some erroneous paragraph: not a great experience.
+
+*_Collaboration_*. +
+It's not just you help out this way, but other collaborators too. When they <<_receiving_feedback,review your work>>, it's very helpful if there's a bunch of helpful commit messages to guide them. Moreover, a commit is an event than be used to trigger a call to action for reviewing. Short review cycles can work wonders, and this way they are easier to do.
+
+*_Releasing_*. +
+Finally, having small commits also helps with releasing. Merging many small commits means having a lot of control over what set of commits to regard a new release.
+****
+
+=== Syncing changes to the remote Git repository
+
+After having committed a bunch of changes locally, you can sync changes to the remote Git repository simply by using a Git `push`.
+
+How often to push is a matter of debate but also taste. Reasons to push often include:
+
+* <<_receiving_feedback,Receiving feedback>> through a GitHub (draft) pull request requires the commits to be pushed to the remote.
+* Local work could get lost due to hardware failure or viruses, although this is usually not a realistic concern since unless you push really rarely which is discouraged anyway.
 
 === Receiving feedback
 
