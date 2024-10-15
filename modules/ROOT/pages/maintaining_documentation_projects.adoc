@@ -339,13 +339,20 @@ How often to push is a matter of debate but also taste. Reasons to push often in
 
 === Receiving feedback
 
-==== Creating a draft pull request
-
 ****
 image::proc_reviewing_and_discussion.drawio.svg[]
 ****
 
+For receiving feedback we will use GitHub draft pull requests, i.e. pull requests with the _draft_ status.
+
+==== Creating a draft pull request
+
+
+==== Reviewing and discussion on GitHub
+
 == Finishing drafts
+
+TODO: Process diagram.
 
 Once a draft is finished, it should be merged onto the version branch it originated from. Preferably this is done through a pull request on GitHub, so collaborators can review the changes before performing the merge.
 
