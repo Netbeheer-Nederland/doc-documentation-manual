@@ -177,6 +177,10 @@ Once the PR is created, you can start a review. In a review you can provide comm
 image::ex_pr_files_changed_tab.png[]
 +
 . Scroll down to read what has been changed.
+.. You might want to show only `.adoc` files using the file filter:
++
+image::ex_git_pr_file_filter.png[]
++
 . When you like to comment, click the `+` icon that appears when hovering over a line:
 +
 image::ex_pr_comment.png[]
