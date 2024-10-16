@@ -343,30 +343,69 @@ How often to push is a matter of debate but also taste. Reasons to push often in
 image::proc_reviewing_and_discussion.drawio.svg[]
 ****
 
-For receiving feedback we will use GitHub draft pull requests, i.e. pull requests with the _draft_ status.
+To receive feedback we advise using GitHub draft pull requests, i.e. pull requests with the _draft_ status.
 
 ==== Creating a draft pull request
 
+From the https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request[GitHub documentation]:
+
+[quote]
+To create a pull request that is ready for review, click Create Pull Request. To create a draft pull request, use the drop-down and select Create Draft Pull Request, then click Draft Pull Request.
+
+.Create a draft pull request
+[#create_draft_pr]
+====
+image::ex_change_pr_to_draft.png[]
+====
 
 ==== Reviewing and discussion on GitHub
 
+Once the PR is created, you can start a review. In a review you can provide comments through inline threads where collaborators can discuss.
+
+.Instructions
+. Click the _Files changed_ tab:
++
+image::ex_pr_files_changed_tab.png[]
++
+. Scroll down to read what has been changed.
+. When you like to comment, click the `+` icon that appears when hovering over a line:
++
+image::ex_pr_comment.png[]
++
+.. Click _Add single comment_ to start a thread for this line:
+. Other collaborators can now discuss the feedback with you in that thread:
++
+image::ex_pr_thread.png[]
++
+.. Once a discussion is settled, you can resolve the thread by clicking _Resolve conversation_.
+
+[TIP]
+Once you've obtained feedback, you can make changes, push those to the GitHub repository and the pull request will pick up on those changes. This means you can keep a draft pull request open for as long as you keep working on it, and have a single place where you can periodically ask for feedback.
+
 == Finishing drafts
 
-TODO: Process diagram.
+****
+image::proc_finish_draft.drawio.svg[]
+****
 
-Once a draft is finished, it should be merged onto the version branch it originated from. Preferably this is done through a pull request on GitHub, so collaborators can review the changes before performing the merge.
+Once a draft is finished, it should be merged onto the version branch it originated fromfootnote:[Potentially it could be merged onto multiple version branches, but that should be a rare scenario you should be cautious about.]. Preferably this is done through a pull request on GitHub, so collaborators can review the changes before performing the merge.
 
 Following the merge, you can choose whether to <<_releasing_a_version,release a new version>> of the documentation project or not.
 
 === Creating a pull request
 
-If you worked with a draft PR before, it is easiest to convert that one into a regular PR.
+If there is an outstanding draft pull request you were using, it is easiest to convert that one into a regular pull request. You can find detailed instructions on the GitHub documentation: https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/changing-the-stage-of-a-pull-request##marking-a-pull-request-as-ready-for-review[Marking a pull request as ready for review].
 
-==== Reviewing and discussion
+Otherwise, simply create a regular pull request. This too is detailed extensively in the GitHub documentation: https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request[Creating a pull request].
 
-==== Merging the draft branch
+=== Reviewing and discussion
 
-==== To release or not to release
+Most of the reviewing and discussion process is the <<_reviewing_and_discussion_on_github,same as for draft PRs>>. Please refer to the instructions already provided.
+
+[NOTE]
+One notable distinction, however, is that repositories could have rules set up which require a certain minimal amount of reviewers who have approved the changes made. Only once this constraint has been satisfied will it be possible to merge the branch.
+
+=== Merging the draft branch
 
 .Merging a draft branch
 ====
@@ -385,9 +424,18 @@ gitGraph
 image::ex_merging_draft_branch.png[width=50%]
 ====
 
+As soon as the reviewing is done and the changes are approved by the reviewers, you can merge the draft branch:
 
+.Merging the draft branch
+image::ex_pr_merge.png[]
 
+After the merging has succeeded, it is good practice to delete the draft branch.
 
+=== To release or not to release
+
+You finished your draft, does this mean you have to create a new release? That's up to you.
+
+Sometimes, the finishing of a draft makes for a good reason to release a new version. Other times, you may want to wait for additional work to be done before releasing a new version.
 
 == Releasing a version
 
@@ -395,10 +443,13 @@ image::ex_merging_draft_branch.png[width=50%]
 image::proc_release_new_version.drawio.svg[]
 ****
 
-=== Tagging a commit with a version number
+To mark a revision as a new version, all you need to do is tag a commit with version number. The root documentation project scans all projects for these tags and aggregates all versions of all projects that way.
 
-.Tagging a version
-====
+Once the new release is created, make sure to rebuild the documentation website in order for the changes to become visible on the website.
+
+=== Create a tag for your release
+
+.Tagging a version creates a new version
 // Mermaid Gitgraph
 ////
 %%{init: { 'gitGraph': {'mainBranchName': 'v1'}} }%%
@@ -413,9 +464,48 @@ gitGraph
   merge v1.new-logo tag: "v1.1"
 ////
 image::ex_tagging_version.png[width=50%]
-====
 
+You can create a tag from your IDE or using the `git` CLI tool, or using the GitHub website which is probably easiest.
 
-=== Rebuild documentation website
+==== Create a release on GitHub
 
+The easiest way to create tags is to create a new release on GitHub. To do this, visit the GitHub repository of your documentation project in your browser and follow these instructions:
+
+.Instructions
+. Create a new release by clicking the link at the bottom of the right pane:
++
+image::ex_create_release_btn.png[]
++
+. Enter a tag name and click _Create new tag_.
++
+image::ex_create_release_tag.png[]
++
+. Fill in the version number for the release name, and provide release notes.
++
+image::ex_create_release_details.png[]
+.. Note you can mark the release as not ready for production by checking the _Set as a pre-release_ box.
+. Click _Publish release_ when you're done.
+
+You've now released a new version of this documentation project. Make sure to rebuild the documentation website to see the new release featured.
+
+[NOTE]
+The process diagram speaks of pushing changes, referring to the newly created tag. However, using the GitHub website to create a tag as we've done makes this step redundant since it's already done on the remote repository.
+
+== Rebuild documentation website
+
+Rebuilding the documentation website is a manual action:
+
+.Instructions
+. Visit the root documentation project repository on GitHub in your browser.
+. Click _Actions_ in the top toolbar.
+. You should now be presented this screen:
++
 image::trigger_git_workflow_publish_gh_pages.png[]
++
+.. Select the action _Publish to GitHub Pages_ on the left sidebar.
+.. Click the _Run workflow_ button, and then the green _Run workflow_ button.
+. This will create a new run. Its status is indicated by the icon prefixing the line. As soon as it turns green, the new site is built and deployed.
+
+[TIP]
+Sometimes when you refresh the documentation website in your browser, the new changes won't show up. Oftentimes cache is the culprit here. Try hard reloading the page in your browser, for example pressing kbd:[Ctrl+Shift+R] in Google Chrome.
+
