@@ -11,7 +11,7 @@ Here, only a short summary is given to get you started. At some point a more ext
 
 === Write content in AsciiDoc
 
-Content is written in the AsciiDoc markup language. Its well-standardized and expressive plaintext nature is what we require for our durable, documentation as code workflow. You can read more about our motivation for documentation as code and AsciiDoc xref::docs_as_code.adoc[here].
+Content is written in the AsciiDoc markup language. Its well-standardized and expressive plaintext nature is what we require for our durable, documentation as code workflow. You can read more about our motivation for documentation as code and AsciiDoc xref::motivation_for_way_of_working.adoc[here].
 
 You can write AsciiDoc in any IDE or text editor. For learning the language refer to the large variety of resources on the web.
 // TODO: Refer to some helpful resources such as AsciiDoctor's primer, the AsciiDoc website and perhaps some other tutorials or guides?

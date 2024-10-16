@@ -1,5 +1,13 @@
 = Maintaining Documentation Projects
 
+Authors::
+    * mailto:bart.kleijngeld@alliander.com[Bart Kleijngeld] (https://www.alliander.com/[Alliander])
+
+'''
+
+.Process
 ****
 image::proc_maintaining_doc_proj.drawio.svg[]
 ****
+
+This guide helps you to create and maintain documentation projects.

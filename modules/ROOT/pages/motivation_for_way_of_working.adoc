@@ -1,0 +1,189 @@
+= Motivation for Way of Working
+
+[WARNING]
+This is a work in progress.
+
+== Why documentation as code?
+
+First: what does _documentation as code_ even mean? Here's the definition provided by https://www.writethedocs.org/[Write the Docs]:
+
+[quote,'https://www.writethedocs.org/guide/docs-as-code/[Docs as Code]',Eric Holscher & the Write the Docs community]
+____
+Documentation as Code (Docs as Code) refers to a philosophy that you should be writing documentation with the same tools as code:
+
+* _Issue Trackers_
+* _Version Control (Git)_
+* _Plain Text Markup (Markdown, reStructuredText, Asciidoc)_
+* _Code Reviews_
+* _Automated Tests_
+
+This means following the same workflows as development teams, and being integrated in the product team.[...]
+____
+
+=== Benefits to us
+
+==== Flexibility and interoperability
+
+Having our documentation be simple plaintext files gives us complete freedom in what we wish to do with them. Instead of having them be locked-in in a single integrated solution -- as offered by e.g. Microsoft and Atlassian -- that dictates a certain way of working and poses a significant commitment, we get to make up our own processes, way of working, tools and languages.
+
+.Confluence
+====
+Confluence provides a seamless editing experience with an editor, automated page versioning and the ability to do inline reviewing. However, its versioning capabilities don't meet our requirements, and the underlying markup standard is proprietary which hinders interoperability.
+====
+
+When adopting the documentation as code philosophy, however, we have the freedom to choose our own markup language(s) and tools for editing documents, a dedicated VCS like Git or Bitbucket, and a publication environment to our own liking. No one solution will limit our possibilities, since we can always choose (or even build) another tool to fix any challenge we might face.
+
+Not least this means we can choose or build a solution that is free. Not having to bother with the complexity and financial hurdle of licensing is a breeze, and of particular significance to a team that is cross-company.
+
+==== Automation possibilities
+
+Documentation that's code can be parsed. This means we can write linters and validators which automates lots of governance for us such as checking for dead links and style inconsistencies.
+
+Documentation that's code can also be generated. For example, a fixed header containing metadata about the document could be generated and included in every document, or a table of attributes could be generated from a data model.
+
+=== Why not Microsoft 365?
+
+...
+
+
+=== Why not Atlassian Confluence?
+
+...
+
+== Why AsciiDoc?
+
+We need to choose some language to write our documentation in, and AsciiDoc is our choice.
+
+AsciiDoc is well-standardized, testified by the fact that, as of now, there are no flavors of it
+
+=== Why not Markdown?
+
+Markdown knows many flavors, i.e. is not well standardized. Moreover, it has very limited expressiveness, at best being able to represent _simple_ tables footnote:[Some flavors -- such as CommonMark -- don't even support tables at all.]. Writing Markdown unavoidably involves mixing in quite some HTML, which means you have to write and understand two languages. This is hardly ideal.
+
+For those who are interested: the Asciidoctor documentation contains a more thorough https://docs.asciidoctor.org/asciidoc/latest/asciidoc-vs-markdown/[comparison between AsciiDoc and Markdown].
+
+=== Why not LaTeX or Typst?
+
+We haven't looked into these languages extensively, since their scope is scientific papers and not the writing of various kinds of documentation such as multipage guides, wikis or books. Because of this we expect to find inadequate support for certain features, most notably cross-referencing between documents.
+
+Furthermore, the language complexity of both is substantial, allowing for powerful features we don't currently expect to use.
+
+=== Why not ODT (OpenDocument Text) files?
+
+ODT is a word processor format that is part of the open standard https://en.wikipedia.org/wiki/OpenDocument[ODF (ISO 26300)]. It is supported by open source word processors such as https://www.libreoffice.org/discover/writer/[LibreOffice Writer], but also by Microsoft Word.
+
+A great advantage of this format is that it makes writing really accessible, since virtually anyone can (easily learn to) write in word processors like Word. So why didn't we choose ODT?
+
+First of all, this is a binary serialization and therefore doesn't properly match our requirement of "code". Versioning this is a pain, since no diffs can be generated. This also hinders the ability of reviewing.
+
+== Why Antora?
+
+=== Why not ReSpec or Bikeshed?
+
+...
+
+////
+
+== Requirements
+
+* create cross-reference between documents, includes referring to specific versions and elements in (other) documents
+* easily re-use content to vastly improve maintainability
+* versioning scoped to projects, not files
+* maintain one source for all desired output formats
+* generate and serve a web documentation
+* generate a portable document
+* content serialized in open, well-standardized format for interoperability and durability
+* search through all documents
+* maintain all project resources (pages, images, diagrams, etc.) in one place as much as possible
+
+
+== Why not Microsoft Word?
+Virtually everyone knows how to use Microsoft Word, and many of us -- certainly professionally -- have access to it. Organisations across the globe use the Microsoft ecosystem to maintain their documentation. Why not leverage this well-adopted system for our documentation purposes?
+
+Although there are benefits to using Word, most notably its powerful and familiar WYSIWYG editor, inline commenting capabilities and integrated experience within the larger Microsoft ecosystem, there are considerable drawbacks which led to us not choosing to use it.
+
+Firstly, the Microsoft solutions are not free. Since our projects are cross-company, it is not obvious where the budget should come from. This causes uncertainty and tedious conversations with stakeholders to keep obtaining budget to maintain our documentation.
+
+Furthermore, once an intricate web of interlinking documents exists, Word is not very flexible in re-using content. Sure, you can https://support.microsoft.com/en-us/office/insert-a-document-in-word-274128e5-4da7-4cb8-b65f-3d8b585e03f1[insert documents in other documents], but
+
+
+
+=== Benefits
+
+
+
+=== Drawbacks
+
+* hard to reap benefits without committing fully the Microsoft ecosystem
+* limited ability to structure documents using multiple (logical) pages and a navigation index to navigate those
+* inability to version anything else but documents
+* inability to cross-reference to specific version of another document
+* inability to reference
+
+
+
+
+== Why not Confluence?
+
+==
+
+== Features
+
+
+|===
+|Feature |AsciiDoc |Word |Confluence
+
+|Cross-referencing
+a|*
+|Column 3, row 1
+|Column 4, row 1
+
+|Versioning
+|Column 2, row 2
+|Column 3, row 2
+|Column 4, row 2
+
+|Structuring of projects
+|Column 2, row 3
+|Column 3, row 3
+|Column 4, row 3
+
+|Interoperability and standardization
+|Column 2, row 4
+|Column 3, row 4
+|Column 4, row 4
+
+|Costs and dependency
+|Column 2, row 5
+|Column 3, row 5
+|Column 4, row 5
+
+|Automation capabilities
+|Column 2, row 6
+|Column 3, row 6
+|Column 4, row 6
+
+|Content re-usage
+|Column 2, row 7
+|Column 3, row 7
+|Column 4, row 7
+
+|Reviewing
+|Column 2, row 8
+|Column 3, row 8
+|Column 4, row 8
+
+|Writing and working experience
+|Column 2, row 9
+|Column 3, row 9
+|Column 4, row 9
+
+|Portable document export for projects
+|Column 2, row 8
+|Column 3, row 8
+|Column 4, row 8
+|===
+
+'''
+
+////
