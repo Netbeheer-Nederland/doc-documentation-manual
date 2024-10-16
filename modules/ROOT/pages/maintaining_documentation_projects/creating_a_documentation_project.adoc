@@ -78,7 +78,7 @@ content:
 <1> The `sources` key under `content` is where _content sources_ are specified. Documentation projects must be added here in order to be integrated.
 <2> You can ignore the content source which has a relative URLfootnote:[This is the root component.].
 <3> Items with an absolute URL point to documentation projects.
-<4> To register a new documentation project, add a new item to the list. Provide a `url` entry which points to the project's Git repository, and add the entry `tags: v*` to exclusively aggregate content from tags starting with a `v` footnote:[This facilitates how we wish to manually control releasing new versions. See: <<_releasing_a_version>>.].
+<4> To register a new documentation project, add a new item to the list. Provide a `url` entry which points to the project's Git repository, and add the entry `tags: v*` to exclusively aggregate content from tags starting with a `v` footnote:[This facilitates how we wish to manually control releasing new versions. See: xref::maintaining_documentation_projects/releasing_a_version.adoc[].].
 +
 . Make the new project findable by adding it to the site navigation. This is done by editing the root component's `nav.adoc`:
 +
