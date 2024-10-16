@@ -1,0 +1,192 @@
+= Working on a draft
+
+****
+image::proc_working_on_draft.drawio.svg[]
+****
+
+== Writing content
+
+// TODO: Refer to dedicated chapter.
+Here, only a short summary is given to get you started. At some point a more extensive guide on how to write content and leverage helpful tooling will have to be written.
+
+=== Write content in AsciiDoc
+
+Content is written in the AsciiDoc markup language. Its well-standardized and expressive plaintext nature is what we require for our durable, documentation as code workflow. You can read more about our motivation for documentation as code and AsciiDoc xref::docs_as_code.adoc[here].
+
+You can write AsciiDoc in any IDE or text editor. For learning the language refer to the large variety of resources on the web.
+// TODO: Refer to some helpful resources such as AsciiDoctor's primer, the AsciiDoc website and perhaps some other tutorials or guides?
+
+=== Use Antora resource IDs instead of local paths
+
+[IMPORTANT]
+We make use of Antora for coordination and aggregation of documentation projects. When cross-referencing resources, do not use relative paths, but use Antora resource IDs. Read more on why this is encouraged https://antora.zulipchat.com/#narrow/stream/282400-users/topic/Local.20references.20compatible.20with.20both.20Antora.20and.20AsciiDoctor[in this issue].
+
+=== Embedding Diagrams.net (draw.io) images
+
+Diagrams.net drawings are used extensively in our documentation. For greatly enhanced maintainability the following way of working is advised:
+
+.Instructions
+
+. Create and edit your diagrams in the Diagrams.net application, web or desktop.
+. Export the diagram to the SVG or PNG format
+.. This can be found under _File > Export as > ..._
+.. *Important*: save a copy of the diagram inside the image so you can edit it later:
++
+image::ex_save_drawio_include_diagram.png[]
++
+. Save the image to the `modules/ROOT/images` directory of your project.
+. Use the `image` macro to show the image at the desired place in your document(s). For example:
++
+[source,asciidoc]
+....
+image::my_diagram.png[]
+....
++
+. You can edit the diagram by opening the image in the Diagrams.net application.
+
+[TIP]
+--
+You can use hyperlinks in the diagram to jump to associated sections in your document by adding those relative anchors as links in Diagrams.net. For this to work you need to pass the `opts=interactive` attribute value to the `image` macro.
+
+Note that this seems to work only with the desktop application, since the web app exports absolute URLs that are relative to the Diagrams.net web app.
+--
+
+== Editor and IDE support
+
+As discussed, AsciiDoc is plaintext and can be edited in any editor. However, editing this way can become quite tedious unless you use an editor with more advanced features.
+
+Features to be looking for:
+
+* Syntax highlighting
+* Autocompletion of AsciiDoc macros and constructs
+* Automatic checking for dead references
+* Syntax validation and linting to help with writing correct code
+* Live previewing of rendered documentation
+* Navigating between files with jumps and using a file explorer
+* Git support
+
+This is not an exhaustive list of course, but if an editor supports the majority of these features it will really make your life easier.
+
+Following are some suggestions for IDEs which are popular, easy to use and support good plugins for working with AsciiDoc.
+
+=== IntelliJ IDE
+
+The IntelliJ IDEs are famous for their full-featured integrated development environment where basically everything is taken care of.
+
+Where it stands out:
+
+* Powerful, accessible yet highly customizable UI
+* Best https://plugins.jetbrains.com/plugin/7391-asciidoc[AsciiDoc plugin] currently available
+** Autocompletion works really well
+** Live preview pane, including diagrams as code
+** Antora aware, so it provides a lot of help with cross-references as well
+* Great support for Git built-in
+
+[TIP]
+Get a free version of the application by looking for the _Community Edition_.
+
+=== Visual Studio Code
+
+Another greater editor for writing AsciiDoc is Visual Studio Code.
+
+It comes with a lot less batteries included than IntelliJ's IDEs, but that could be a feature depending on your preferences.
+
+Where it stands out:
+
+* Lean, simple editor but with a great host of extensions available that are easy to install
+* Very decent AsciiDoc plugin available, although not quite as powerful as the IntelliJ one
+** It's Antora awareness is limited at best, not working at worst. This means live previewing is very limited as well at least for our projects.
+* Great support for Git built-in
+
+=== Other editors
+
+There are plugins for Emacs and Vim as well, and likely for many more editors. However, nothing seems to give as much of a fully featured and integrated experience as the IntelliJ IDE does with its AsciiDoc plugin, so that one is highly recommended.
+
+If you do decide to use some other editor, just be aware that previewing will very likely not work with anything that's referenced through Antora resource IDs such as partials and images. Since we do <<_use_antora_resource_ids_instead_of_local_paths,use Antora resource IDs for every reference>>, this means all partial including and image rendering won't work in the preview. Luckily we can preview in other ways as well.
+
+== Previewing changes
+
+Luckily it's not an absolute requirement that our IDE provides a live preview as we type. In fact, this preview is inherently limited in the first place, since it renders in a different way and context than the eventual Antora setup would.
+
+=== Running Antora locally
+To preview the entire documentation website as it would be rendered in production, but locally including your changes, you can run Antora locally.
+
+See: xref:using_antora_locally.adoc[].
+
+== Committing new changes
+
+Since we rely on Git for versioning, much of the best practices that apply generally when working with Git also apply here.
+
+A few words of advice that cannot be repeated enough:
+
+* Keep commits small.
+* Provide descriptive commit messages that are as short and to the point as possible.
+
+.Small commits and short commit messages
+****
+*_Overview_*. +
+Small commits help with maintaining overview on what you are doing and have done, since small units of work are easier to describe well, and having many of such messages listed chronologically really paints a good picture of your process.
+
+*_Fine-grained rollback_*. +
+This also enables fine-grained rolling back of commits whenever something turned out to be a mistake for example. Imagine having to roll back a gigantic load of work just to revert some erroneous paragraph: not a great experience.
+
+*_Collaboration_*. +
+It's not just you help out this way, but other collaborators too. When they <<_receiving_feedback,review your work>>, it's very helpful if there's a bunch of helpful commit messages to guide them. Moreover, a commit is an event than be used to trigger a call to action for reviewing. Short review cycles can work wonders, and this way they are easier to do.
+
+*_Releasing_*. +
+Finally, having small commits also helps with releasing. Merging many small commits means having a lot of control over what set of commits to regard a new release.
+****
+
+== Syncing changes to the remote Git repository
+
+After having committed a bunch of changes locally, you can sync changes to the remote Git repository simply by using a Git `push`.
+
+How often to push is a matter of debate but also taste. Reasons to push often include:
+
+* <<_receiving_feedback,Receiving feedback>> through a GitHub (draft) pull request requires the commits to be pushed to the remote.
+* Local work could get lost due to hardware failure or viruses, although this is usually not a realistic concern since unless you push really rarely which is discouraged anyway.
+
+== Receiving feedback
+
+****
+image::proc_reviewing_and_discussion.drawio.svg[]
+****
+
+To receive feedback we advise using GitHub draft pull requests, i.e. pull requests with the _draft_ status.
+
+=== Creating a draft pull request
+
+From the https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request[GitHub documentation]:
+
+[quote]
+To create a pull request that is ready for review, click Create Pull Request. To create a draft pull request, use the drop-down and select Create Draft Pull Request, then click Draft Pull Request.
+
+.Create a draft pull request
+[#create_draft_pr]
+====
+image::ex_change_pr_to_draft.png[]
+====
+
+=== Reviewing and discussion on GitHub
+
+Once the PR is created, you can start a review. In a review you can provide comments through inline threads where collaborators can discuss.
+
+.Instructions
+. Click the _Files changed_ tab:
++
+image::ex_pr_files_changed_tab.png[]
++
+. Scroll down to read what has been changed.
+. When you like to comment, click the `+` icon that appears when hovering over a line:
++
+image::ex_pr_comment.png[]
++
+.. Click _Add single comment_ to start a thread for this line:
+. Other collaborators can now discuss the feedback with you in that thread:
++
+image::ex_pr_thread.png[]
++
+.. Once a discussion is settled, you can resolve the thread by clicking _Resolve conversation_.
+
+[TIP]
+Once you've obtained feedback, you can make changes, push those to the GitHub repository and the pull request will pick up on those changes. This means you can keep a draft pull request open for as long as you keep working on it, and have a single place where you can periodically ask for feedback.

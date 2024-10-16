@@ -1,0 +1,17 @@
+= Rebuild documentation website
+
+Rebuilding the documentation website is a manual action:
+
+.Instructions
+. Visit the root documentation project repository on GitHub in your browser.
+. Click _Actions_ in the top toolbar.
+. You should now be presented this screen:
++
+image::trigger_git_workflow_publish_gh_pages.png[]
++
+.. Select the action _Publish to GitHub Pages_ on the left sidebar.
+.. Click the _Run workflow_ button, and then the green _Run workflow_ button.
+. This will create a new run. Its status is indicated by the icon prefixing the line. As soon as it turns green, the new site is built and deployed.
+
+[TIP]
+Sometimes when you refresh the documentation website in your browser, the new changes won't show up. Oftentimes cache is the culprit here. Try hard reloading the page in your browser, for example pressing kbd:[Ctrl+Shift+R] in Google Chrome.

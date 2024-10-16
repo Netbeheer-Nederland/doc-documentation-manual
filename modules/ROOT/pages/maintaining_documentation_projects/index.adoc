@@ -1,0 +1,5 @@
+= Maintaining Documentation Projects
+
+****
+image::proc_maintaining_doc_proj.drawio.svg[]
+****

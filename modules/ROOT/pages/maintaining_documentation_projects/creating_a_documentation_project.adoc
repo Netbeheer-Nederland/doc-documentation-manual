@@ -1,0 +1,96 @@
+= Creating a documentation project
+
+****
+image::proc_create_doc_proj.drawio.svg[]
+****
+
+Each documentation project is maintained in its own Git repository and needs to conform to a certain structurefootnote:[Each documentation project corresponds to an Antora component, so it must have a component version descriptor (an `antora.yml` file) and modules (a `modules` directory).] in order for the documentation website to be able to integrate it.
+
+== Creating a Git repository from template
+
+.Instructions
+. Visit the https://github.com/Netbeheer-Nederland/tmpl-doc/[documentation project template repository] in your browser.
+. Click the _Use this template_ button located at the top-right and choose _Create a new repository_ from the emerging dropdown:
++
+image::use_tmpl_button.png[]
++
+. Fill in the form to create the repository:
++
+.Fill in details to create the repository
+====
+image::create_git_repo.png[]
+====
++
+.. Set the repository owner to _Netbeheer-Nederland_.
+.. Provide a name for the repository. Make sure to follow the naming conventionsfootnote:[For now, it suffices to start the name with `doc-`, and write the rest of the name in `lower-kebab-case`.].
+.. Provide a description for the repository.
+.. Set the repository visibility to _Public_.
+. After clicking _Create repository_ you should be redirected to your new Git repository.
+
+== Configuring the project
+
+You've now successfully bootstrapped a documentation project. Now let's configure it.
+
+.Instructions
+. Open the `antora.yml` filefootnote:[The presence of this file tells you the directory contains an Antora component version.] at the root of the project and edit according to the following instructions:
++
+[source,yaml]
+....
+name: modeling-guide <1>
+title: Modeling Guide <2>
+version: true <3>
+start_page: index.adoc <4>
+nav:
+- modules/ROOT/nav.adoc <5>
+....
+<1> The `name` value uniquely identifies the project within the entire documentation site. It is used, for example, to do cross-referencing from one project to another. Please follow naming conventionsfootnote:[For now, write the entire name in `lower-kebab-case`.].
+<2> A `title` for your project, suited for presentation on the documentation website.
+<3> Use `version` to describe the version of the project. It is strongly advised to set this to `true`, causing the version identifier to follow Gitfootnote:[This plays nicely with the Antora playbook used by the root documentation project to generate the website. Since there you can specify patterns for matching certain branches or tags, that will dictate what version identifier the component shows.].
+<4> The start or root page of the project. It defaults to `index.adoc` footnote:[The page path entered is not a regular file path, but an https://docs.antora.org/antora/latest/page/resource-id/#whats-a-resource-id[Antora resource ID].], but you can set it to a different name here.
+<5> Under the `nav` key you can specify https://docs.antora.org/antora/latest/navigation/files-and-lists/#whats-a-nav-file[navigation files] to structure the pages in the project.
++
+. Save, commit and push the changes.
+
+'''
+
+Please refer to the Antora documentation for more details on https://docs.antora.org/antora/latest/playbook/[configuring the Antora playbook] and https://docs.antora.org/antora/latest/component-version-descriptor/[`antora.yml`].
+
+== Registering the new project with the root documentation project
+
+The documentation website can only show projects it is aware of. Whenever a documentation project is created or renamed, the root documentation project which generates the website must be made aware of this. Since site generation is configured through an Antora playbook (`antora-playbook.yml`), we will proceed to make the necessary changes there.
+
+.Instructions
+. Have the https://github.com/Netbeheer-Nederland/docs/[root documentation project Git repository] checkout out.
+. Open `antora-playbook.yml`, look for the `content` key and follow instructions:
++
+[source,yaml]
+....
+content:
+  sources: <1>
+  - url: . <2>
+    branches: HEAD
+    start_path: ./root_component
+  - url: https://github.com/Netbeheer-Nederland/doc-documentation-manual <3>
+    tags: v*
+  - url: https://github.com/Netbeheer-Nederland/doc-modeling-guide <4>
+    tags: v*
+....
+<1> The `sources` key under `content` is where _content sources_ are specified. Documentation projects must be added here in order to be integrated.
+<2> You can ignore the content source which has a relative URLfootnote:[This is the root component.].
+<3> Items with an absolute URL point to documentation projects.
+<4> To register a new documentation project, add a new item to the list. Provide a `url` entry which points to the project's Git repository, and add the entry `tags: v*` to exclusively aggregate content from tags starting with a `v` footnote:[This facilitates how we wish to manually control releasing new versions. See: <<_releasing_a_version>>.].
++
+. Make the new project findable by adding it to the site navigation. This is done by editing the root component's `nav.adoc`:
++
+[source,adoc]
+....
+* xref:documentation-manual::index.adoc[Home] <1>
+* Modeling Guide <2>
+** xref:modeling-guide::index.adoc[] <3>
+....
+<1> Navigation files are lists. Also, by providing text between the brackets (`[]`) you can set the link text.
+<2> You don't have to exclusively write references. Using plain text headers can sometimes be beneficial for structuring the content.
+<3> Add references for all pages in any structure you see fit. Note you can leave the text between the brackets empty, automatically causing the link text to be the referenced page's title.
++
+. Commit and push these changes to the `main` branch.
+. Make sure to xref::maintaining_documentation_projects/rebuild_documentation_website.adoc[rebuild the documentation website] once you wish to actually see the new documentation project appear on the website.

@@ -1,0 +1,87 @@
+= Creating a new draft
+
+****
+image::proc_create_new_draft_branch.drawio.svg[]
+****
+
+To make changes you need to create a draft. Drafts are tracked in Git in dedicated branches called _draft branches_. Depending on what major version(s) you are working on, you choose a different _version branch_ footnote:[Each major version has a dedicated branch in Git called a _version branch_. These branches enable simultaneous maintenance on multiple major versions.] to branch off for your draft. If you know in advance the changes will constitute a major version increment, you can create a new version branch beforehand.
+
+[NOTE]
+Even though your draft branch will originate from one version branch, it is possible to merge it onto several version branches. This can be useful in scenarios such as fixing a typo that is present in more than one of the major versions.
+
+== Creating a version branch
+
+.New version branch `v1`
+====
+// Mermaid Gitgraph
+////
+%%{init: { 'gitGraph': {'mainBranchName': 'v0', 'showBranches': true, 'parallelCommits': false}} }%%
+gitGraph
+  commit
+  commit
+  branch v1
+  checkout v1
+  commit
+////
+image::ex_creating_version_branch.png[width=33%]
+====
+
+If you want to create a new version branch, simply create a new branch on the Git repository following the naming scheme `vM`, where `v` stands for 'version' and `M` is a number denoting the major version.
+
+The following example shows how to do this on the CLI using `git`.
+
+.Creating new version branch `v1` using `git` on the CLI
+====
+[source,shell]
+....
+$ git checkout v0 <1>
+$ git checkout -b v1 <2>
+$ git push -u origin v1 <3>
+....
+<1> Checkout the revision you wish to start a new version from. Here we use the `HEAD` of the `v0` version branch.
+<2> Create a new version branch with the major version incremented by `1` and switch to it.
+<3> Set the remote tracking branch for the new branch.
+====
+
+== Creating a draft branch
+
+.New draft branch `v1.new-logo`
+====
+// Mermaid Gitgraph
+////
+%%{init: { 'gitGraph': {'mainBranchName': 'v0', 'showBranches': true, 'parallelCommits': false}} }%%
+gitGraph
+  commit
+  commit
+  branch v1
+  checkout v1
+  commit
+  commit
+  branch v1.new-logo
+  commit
+  commit
+////
+image::ex_creating_draft_branch.png[width=50%]
+====
+
+Pick a version branch to branch the draft off of. Draft branches follow the naming convention: `vM.draft-name`, where `vM` is the name of the version branch, and `draft-name` is a name of the draft. It is recommended to choose a name that expresses the intent of the work done in the draft.
+
+[NOTE]
+It may seem like a good idea to also allow (or even prefer) draft branches to be based on releases, such as `v2.3.stakeholders-update`. However, you could wonder useful this really is. First of all, releases are tags, while it is more common and easier to branch off of a branch `HEAD`. Also, there's no real benefit, since often several drafts are being worked on for the same major version, and likely several of those are merged simultaneously leading to a new release.
+
+// TODO: Doesn't the minor version help communicating the correct merge order?
+
+The following example shows how to do this on the CLI using `git`.
+
+.Creating new draft branch `v1.new-logo` using `git` on the CLI
+====
+[source,shell]
+....
+$ git checkout v1 <1>
+$ git checkout -b v1.new-logo <2>
+$ git push -u origin v1.new-logo <3>
+....
+<1> Checkout the version branch you wish to start a new draft for. Here we use the `HEAD` of the `v1` version branch.
+<2> Create a new draft branch and switch to it.
+<3> Set the remote tracking branch for the new branch.
+====

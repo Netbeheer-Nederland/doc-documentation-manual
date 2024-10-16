@@ -1,0 +1,54 @@
+= Finishing a draft
+
+****
+image::proc_finish_draft.drawio.svg[]
+****
+
+Once a draft is finished, it should be merged onto the version branch it originated fromfootnote:[Potentially it could be merged onto multiple version branches, but that should be a rare scenario you should be cautious about.]. Preferably this is done through a pull request on GitHub, so collaborators can review the changes before performing the merge.
+
+Following the merge, you can choose whether to xref::maintaining_documentation_projects/releasing_a_version.adoc[release a new version] of the documentation project or not.
+
+== Creating a pull request
+
+If there is an outstanding draft pull request you were using, it is easiest to convert that one into a regular pull request. You can find detailed instructions on the GitHub documentation: https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/changing-the-stage-of-a-pull-request##marking-a-pull-request-as-ready-for-review[Marking a pull request as ready for review].
+
+Otherwise, simply create a regular pull request. This too is detailed extensively in the GitHub documentation: https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request[Creating a pull request].
+
+== Reviewing and discussion
+
+Most of the reviewing and discussion process is the xref::maintaining_documentation_projects/working_on_a_draft.adoc#_reviewing_and_discussion_on_github[same as for draft PRs]. Please refer to the instructions already provided.
+
+[NOTE]
+One notable distinction, however, is that repositories could have rules set up which require a certain minimal amount of reviewers who have approved the changes made. Only once this constraint has been satisfied will it be possible to merge the branch.
+
+== Merging the draft branch
+
+.Merging a draft branch
+====
+// Mermaid Gitgraph
+////
+%%{init: { 'gitGraph': {'mainBranchName': 'v1'}} }%%
+gitGraph
+  commit
+  commit
+  branch v1.new-logo
+  commit
+  commit
+  checkout v1
+  merge v1.new-logo
+////
+image::ex_merging_draft_branch.png[width=50%]
+====
+
+As soon as the reviewing is done and the changes are approved by the reviewers, you can merge the draft branch:
+
+.Merging the draft branch
+image::ex_pr_merge.png[]
+
+After the merging has succeeded, it is good practice to delete the draft branch.
+
+== To release or not to release
+
+You finished your draft, does this mean you have to create a new release? That's up to you.
+
+Sometimes, the finishing of a draft makes for a good reason to release a new version. Other times, you may want to wait for additional work to be done before releasing a new version.
