@@ -1,0 +1,53 @@
+= Releasing a version
+
+****
+image::proc_release_new_version.drawio.svg[]
+****
+
+To mark a revision as a new version, all you need to do is tag a commit with version number. The root documentation project scans all projects for these tags and aggregates all versions of all projects that way.
+
+Once the new release is created, make sure to rebuild the documentation website in order for the changes to become visible on the website.
+
+== Create a tag for your release
+
+.Tagging a version creates a new version
+// Mermaid Gitgraph
+////
+%%{init: { 'gitGraph': {'mainBranchName': 'v1'}} }%%
+gitGraph
+  commit
+  commit tag: "v1.0"
+  commit
+  branch v1.new-logo
+  commit
+  commit
+  checkout v1
+  merge v1.new-logo tag: "v1.1"
+////
+image::ex_tagging_version.png[width=50%]
+
+You can create a tag from your IDE or using the `git` CLI tool, or using the GitHub website which is probably easiest.
+
+=== Create a release on GitHub
+
+The easiest way to create tags is to create a new release on GitHub. To do this, visit the GitHub repository of your documentation project in your browser and follow these instructions:
+
+.Instructions
+. Create a new release by clicking the link at the bottom of the right pane:
++
+image::ex_create_release_btn.png[]
++
+. Enter a tag name and click _Create new tag_.
++
+image::ex_create_release_tag.png[]
++
+. Fill in the version number for the release name, and provide release notes.
++
+image::ex_create_release_details.png[]
+.. Note you can mark the release as not ready for production by checking the _Set as a pre-release_ box.
+. Click _Publish release_ when you're done.
+
+You've now released a new version of this documentation project. Make sure to rebuild the documentation website to see the new release featured.
+
+[NOTE]
+The process diagram speaks of pushing changes, referring to the newly created tag. However, using the GitHub website to create a tag as we've done makes this step redundant since it's already done on the remote repository.

@@ -1,1 +1,10 @@
-* Home
+* Documentation Architecture
+** Documentation Website
+** Documentation Projects
+* xref::maintaining_documentation_projects/index.adoc[]
+** xref::maintaining_documentation_projects/creating_a_documentation_project.adoc[]
+** xref::maintaining_documentation_projects/creating_a_new_draft.adoc[]
+** xref::maintaining_documentation_projects/working_on_a_draft.adoc[]
+** xref::maintaining_documentation_projects/finishing_a_draft.adoc[]
+** xref::maintaining_documentation_projects/releasing_a_version.adoc[]
+** xref::maintaining_documentation_projects/rebuild_documentation_website.adoc[]
